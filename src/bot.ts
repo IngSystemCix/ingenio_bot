@@ -1,11 +1,23 @@
-import { Client, GatewayIntentBits } from "discord.js";
+import { Client, Events } from "discord.js";
 import dotenv from 'dotenv';
-const client = new Client({intents: [GatewayIntentBits.Guilds]});
+import { TextColor } from "./utils/TextColor";
+const client = new Client({intents: 53575421});
+
+// Load .env file
 
 dotenv.config();
 
-client.once('ready', () => {
-    console.log(`${TextColor.colorize("✅ Start: ", "fgGreen")} Logged in as ${client.user?.tag}!`);
+// Register commands
+
+client.on(Events.InteractionCreate, async (interaction) => {
+    if (!interaction.isCommand()) return;
+    
+})
+
+// Initialize bot
+
+client.once(Events.ClientReady, () => {
+    console.log(`${TextColor.colorize("✅ 200 OK: ", "fgGreen")} Logged in as ${TextColor.colorize(`${client.user?.username}`, "fgRed")}!`);
 });
 
 client.login(process.env.APP_TOKEN);

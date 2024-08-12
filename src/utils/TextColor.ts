@@ -1,4 +1,4 @@
-class TextColor {
+export class TextColor {
   private static readonly colors = {
     reset: "\x1b[0m",
     bright: "\x1b[1m",

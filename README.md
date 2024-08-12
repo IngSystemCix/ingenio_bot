@@ -16,3 +16,11 @@ IngenioBot is your intelligent assistant for Discord, designed to enhance your s
 └── README.md
 └── tsconfig.md
 ```
+
+## ⚠️ Warning: Handling `.env` Files
+
+⚠️ **Warning:** The `.env` file contains sensitive information such as API keys, database credentials, and other environment-specific configurations. 
+
+- **Never** commit your `.env` file to version control (e.g., GitHub). Always add it to your `.gitignore` file to ensure it is not accidentally pushed to your repository.
+- **Keep your `.env` file secure** and share it only with trusted team members who need access.
+- Consider using environment-specific tools like [dotenv-safe](https://github.com/rolodato/dotenv-safe) to ensure that all required environment variables are properly set.
