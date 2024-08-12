@@ -4,6 +4,10 @@
     "typescript": "^5.5.4"
   },
   "dependencies": {
-    "discord.js": "^14.15.3"
+    "discord.js": "^14.15.3",
+    "dotenv": "^16.4.5"
+  },
+  "scripts": {
+    "bot" : "npx tsc ./src/bot.ts"
   }
 }
