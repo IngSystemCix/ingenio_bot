@@ -8,38 +8,35 @@ on:
 jobs:
   deploy:
     runs-on: ubuntu-latest
+    env:
+      SERVER_ID: ${{ secrets.SERVER_ID }}
+      APP_TOKEN: ${{ secrets.APP_TOKEN }}
+      APP_ID: ${{ secrets.APP_ID }}
+      PREFIX: ${{ secrets.PREFIX }}
 
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v3
+      - name: Checkout the repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0  # Optional: Fetch all history for all branches (if needed)
 
       - name: Set up Node.js
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v3  # Updated to the latest version
         with:
           node-version: '20'
 
       - name: Install dependencies
         run: npm install
 
-      - name: Check secrets
+      - name: Create .env file
         run: |
-          if [ -z "${{ secrets.SERVER_ID }}" ]; then
-            echo "SECRET SERVER_ID is missing."
-            exit 1
-          fi
-          if [ -z "${{ secrets.APP_TOKEN }}" ]; then
-            echo "SECRET APP_TOKEN is missing."
-            exit 1
-          fi
-          if [ -z "${{ secrets.APP_ID }}" ]; then
-            echo "SECRET APP_ID is missing."
-            exit 1
-          fi
-          if [ -z "${{ secrets.PREFIX }}" ]; then
-            echo "SECRET PREFIX is missing."
-            exit 1
-          fi
-          echo "All required secrets are available."
+          echo "SERVER_ID=${{ secrets.SERVER_ID }}" > .env
+          echo "APP_TOKEN=${{ secrets.APP_TOKEN }}" >> .env
+          echo "APP_ID=${{ secrets.APP_ID }}" >> .env
+          echo "PREFIX=${{ secrets.PREFIX }}" >> .env
 
       - name: Run bot
         run: npx ts-node ./src/bot.ts
+
+      - name: Clean up .env file
+        run: rm -f .env
