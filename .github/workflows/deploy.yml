@@ -18,6 +18,9 @@ jobs:
         with:
           node-version: '20'
 
+      - name: Install dependencies
+        run: npm install
+
       - name: Create .env file
         run: |
           echo "SERVER_ID=${{ secrets.SERVER_ID }}" >> .env
@@ -25,8 +28,8 @@ jobs:
           echo "APP_ID=${{ secrets.APP_ID }}" >> .env
           echo "PREFIX=${{ secrets.PREFIX }}" >> .env
 
-      - name: Install dependencies
-        run: npm install
+      - name: Display .env file
+        run: cat .env
 
       - name: Run bot
         run: npx ts-node ./src/bot.ts
