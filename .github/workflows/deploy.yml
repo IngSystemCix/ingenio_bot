@@ -28,8 +28,13 @@ jobs:
           echo "APP_ID=${{ secrets.APP_ID }}" >> .env
           echo "PREFIX=${{ secrets.PREFIX }}" >> .env
 
-      - name: Display .env file
-        run: cat .env
+      - name: Check .env file content
+        run: |
+          if [ -f .env ]; then
+            echo ".env file created successfully"
+          else
+            echo ".env file not found"
+          fi
 
       - name: Run bot
         run: npx ts-node ./src/bot.ts
