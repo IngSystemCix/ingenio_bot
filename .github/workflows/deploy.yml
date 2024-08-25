@@ -20,7 +20,10 @@ jobs:
 
       - name: Create .env file
         run: |
-          echo APP_TOKEN=${{ secrets.APP_TOKEN }} > .env
+          echo "SERVER_ID=${{ secrets.SERVER_ID }}" >> .env
+          echo "APP_TOKEN=${{ secrets.APP_TOKEN }}" >> .env
+          echo "APP_ID=${{ secrets.APP_ID }}" >> .env
+          echo "PREFIX=${{ secrets.PREFIX }}" >> .env
 
       - name: Install dependencies
         run: npm install
