@@ -21,6 +21,14 @@ jobs:
       - name: Install dependencies
         run: npm install
 
+      - name: Check secrets
+        run: |
+          if [ -z "${{ secrets.SERVER_ID }}" ] || [ -z "${{ secrets.APP_TOKEN }}" ] || [ -z "${{ secrets.APP_ID }}" ] || [ -z "${{ secrets.PREFIX }}" ]; then
+            echo "One or more required secrets are missing."
+            exit 1
+          fi
+          echo "All required secrets are available."
+
       - name: Create .env file
         run: |
           echo "SERVER_ID=${{ secrets.SERVER_ID }}" >> .env
@@ -34,6 +42,7 @@ jobs:
             echo ".env file created successfully"
           else
             echo ".env file not found"
+            exit 1
           fi
 
       - name: Run bot
