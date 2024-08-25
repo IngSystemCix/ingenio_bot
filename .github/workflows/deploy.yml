@@ -8,12 +8,6 @@ on:
 jobs:
   deploy:
     runs-on: ubuntu-latest
-    
-    env:
-      SERVER_ID: ${{ secrets.SERVER_ID }}
-      APP_TOKEN: ${{ secrets.APP_TOKEN }}
-      APP_ID: ${{ secrets.APP_ID }}
-      PREFIX: ${{ secrets.PREFIX }}
 
     steps:
       - name: Checkout the repository
