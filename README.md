@@ -19,7 +19,7 @@ IngenioBot is your intelligent assistant for Discord, designed to enhance your s
 
 ## ⚠️ Warning: Handling `.env` Files
 
-⚠️ **Warning:** The `.env` file contains sensitive information such as API keys, database credentials, and other environment-specific configurations. 
+> ⚠️ **Warning:** The `.env` file contains sensitive information, including API keys, database credentials, and other environment-specific configurations. **Please ensure this file is excluded from version control systems and shared only with authorized personnel.**
 
 - **Never** commit your `.env` file to version control (e.g., GitHub). Always add it to your `.gitignore` file to ensure it is not accidentally pushed to your repository.
 - **Keep your `.env` file secure** and share it only with trusted team members who need access.
