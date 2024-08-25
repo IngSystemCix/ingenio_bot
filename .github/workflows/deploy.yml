@@ -25,6 +25,9 @@ jobs:
           echo "APP_ID=${{ secrets.APP_ID }}" >> .env
           echo "PREFIX=${{ secrets.PREFIX }}" >> .env
 
+      - name: Display .env file
+        run: cat .env
+
       - name: Install dependencies
         run: npm install
 
