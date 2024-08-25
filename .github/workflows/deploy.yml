@@ -4,6 +4,9 @@ on:
   push:
     branches:
       - main
+  schedule:
+    - cron: '0 12 * * *'
+    - cron: '0 20 * * *'
 
 jobs:
   deploy:
@@ -28,8 +31,11 @@ jobs:
           echo "APP_ID=${{ secrets.APP_ID }}" >> .env
           echo "PREFIX=${{ secrets.PREFIX }}" >> .env
 
-      - name: Run bot
-        run: npx ts-node ./src/bot.ts
+      - name: Run bot for 2 hours
+        run: |
+          npx ts-node ./src/bot.ts &
+          sleep 3600
+          kill $!
 
       - name: Clean up .env file
         run: rm -f .env
