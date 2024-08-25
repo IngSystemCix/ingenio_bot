@@ -12,7 +12,7 @@ import fs from "fs";
 import path from "path";
 
 // Load .env file
-dotenv.config();
+dotenv.config({ path: "process.env" });
 
 const appToken = process.env.APP_TOKEN;
 const appId = process.env.APP_ID;

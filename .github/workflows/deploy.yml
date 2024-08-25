@@ -23,27 +23,23 @@ jobs:
 
       - name: Check secrets
         run: |
-          if [ -z "${{ secrets.SERVER_ID }}" ] || [ -z "${{ secrets.APP_TOKEN }}" ] || [ -z "${{ secrets.APP_ID }}" ] || [ -z "${{ secrets.PREFIX }}" ]; then
-            echo "One or more required secrets are missing."
+          if [ -z "${{ secrets.SERVER_ID }}" ]; then
+            echo "SECRET SERVER_ID is missing."
+            exit 1
+          fi
+          if [ -z "${{ secrets.APP_TOKEN }}" ]; then
+            echo "SECRET APP_TOKEN is missing."
+            exit 1
+          fi
+          if [ -z "${{ secrets.APP_ID }}" ]; then
+            echo "SECRET APP_ID is missing."
+            exit 1
+          fi
+          if [ -z "${{ secrets.PREFIX }}" ]; then
+            echo "SECRET PREFIX is missing."
             exit 1
           fi
           echo "All required secrets are available."
-
-      - name: Create .env file
-        run: |
-          echo "SERVER_ID=${{ secrets.SERVER_ID }}" >> .env
-          echo "APP_TOKEN=${{ secrets.APP_TOKEN }}" >> .env
-          echo "APP_ID=${{ secrets.APP_ID }}" >> .env
-          echo "PREFIX=${{ secrets.PREFIX }}" >> .env
-
-      - name: Check .env file content
-        run: |
-          if [ -f .env ]; then
-            echo ".env file created successfully"
-          else
-            echo ".env file not found"
-            exit 1
-          fi
 
       - name: Run bot
         run: npx ts-node ./src/bot.ts
