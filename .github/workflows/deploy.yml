@@ -8,22 +8,17 @@ on:
 jobs:
   deploy:
     runs-on: ubuntu-latest
-    env:
-      SERVER_ID: ${{ secrets.SERVER_ID }}
-      APP_TOKEN: ${{ secrets.APP_TOKEN }}
-      APP_ID: ${{ secrets.APP_ID }}
-      PREFIX: ${{ secrets.PREFIX }}
-
+    permissions:
+      contents: read
+      issues: write
     steps:
       - name: Checkout the repository
         uses: actions/checkout@v4
-        with:
-          fetch-depth: 0  # Optional: Fetch all history for all branches (if needed)
 
       - name: Set up Node.js
-        uses: actions/setup-node@v3  # Updated to the latest version
+        uses: actions/setup-node@v4
         with:
-          node-version: '20'
+          node-version: "20"
 
       - name: Install dependencies
         run: npm install
