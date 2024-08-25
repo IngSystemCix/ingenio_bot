@@ -83,7 +83,7 @@ const slashCommands = async () => {
 
 slashCommands();
 
-// Execute commands
+// TODO: solution in commands | Execute commands
 
 client.on(Events.InteractionCreate, async (interaction) => {
   if (!interaction.isCommand()) return;

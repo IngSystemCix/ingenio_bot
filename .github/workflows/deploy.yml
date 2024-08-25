@@ -1,0 +1,29 @@
+name: Deploy Discord bot
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '20'
+
+      - name: Create .env file
+        run: |
+          echo APP_TOKEN=${{ secrets.APP_TOKEN }} > .env
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Run bot
+        run: npx ts-node ./src/bot.ts
