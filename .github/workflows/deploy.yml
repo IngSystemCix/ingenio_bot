@@ -2,8 +2,9 @@ name: Deploy Discord bot
 
 on:
   schedule:
-    - cron: '0 12 * * *'
-    - cron: '0 20 * * *'
+    #Hora en UTC = Hora local + 5 horas
+    - cron: '0 17 * * *'
+    - cron: '0 1 * * *'
 
 jobs:
   deploy:
