@@ -3,6 +3,8 @@ name: Deploy Discord bot
 on:
   schedule:
     #Hora en UTC = Hora local + 5 horas
+    - cron: '0 11 * * *'
+    - cron: '0 14 * * *'
     - cron: '0 17 * * *'
     - cron: '0 20 * * *'
     - cron: '0 23 * * *'
